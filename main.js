@@ -49,7 +49,7 @@ const planeMaterial = new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide
 });
 const plane = new THREE.Mesh(planeGeometry,planeMaterial);
-plane.castShadow = false;             // rui if you are reading this, you are a little shit.
+plane.castShadow = false;
 plane.receiveShadow = true;
 scene.add(plane)
 plane.rotation.set(1.57,0,0)
