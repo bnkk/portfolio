@@ -1,11 +1,16 @@
-import './style.css'
-import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import "./style.css";
+import * as THREE from "three";
+//import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg'),
+  canvas: document.querySelector("#bg")
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -32,28 +37,28 @@ ambientLight.shadow.mapSize.height = 512;
 ambientLight.shadow.camera.near = 0.5;
 ambientLight.shadow.camera.far = 500;
 */
-scene.background = new THREE.Color(0x030E2F)
+scene.background = new THREE.Color(0x030e2f);
 
 const boxGeometry = new THREE.BoxGeometry(10, 10, 10, 10);
 const boxMaterial = new THREE.MeshStandardMaterial({
-  color: 0x0A39BC,
+  color: 0x0a39bc
 });
 const cube = new THREE.Mesh(boxGeometry, boxMaterial);
 cube.castShadow = true;
 cube.receiveShadow = false;
-scene.add(cube)
+scene.add(cube);
 
 const planeGeometry = new THREE.PlaneGeometry(300, 300);
 const planeMaterial = new THREE.MeshStandardMaterial({
-  color: 0x0A39BC,
+  color: 0x0a39bc,
   side: THREE.DoubleSide
 });
-const plane = new THREE.Mesh(planeGeometry,planeMaterial);
+const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.castShadow = false;
 plane.receiveShadow = true;
-scene.add(plane)
-plane.rotation.set(1.57,0,0)
-plane.position.set(0, -10, 0)
+scene.add(plane);
+plane.rotation.set(1.57, 0, 0);
+plane.position.set(0, -10, 0);
 
 /*
 function addStar() {
@@ -69,13 +74,13 @@ function addStar() {
 
 Array(200).fill().forEach(addStar)
 */
-const controls = new OrbitControls(camera,renderer.domElement);
+//const controls = new OrbitControls(camera,renderer.domElement);
 
 const ambientLight = new THREE.AmbientLight(0x404040);
-scene.add(ambientLight)
+scene.add(ambientLight);
 
 const light = new THREE.SpotLight(0xffffff, 1, 100, 90);
-light.position.set(30, 20, 0)
+light.position.set(30, 20, 0);
 light.target = cube;
 light.castShadow = true;
 scene.add(light);
@@ -86,9 +91,8 @@ light.shadow.camera.near = 0.5;
 light.shadow.camera.far = 500;
 
 //const lightHelper = new THREE.SpotLightHelper(light)
-const gridHelper = new THREE.GridHelper(200, 50)
+//const gridHelper = new THREE.GridHelper(200, 50)
 //scene.add(lightHelper)
-
 
 function animate() {
   requestAnimationFrame(animate);
@@ -96,11 +100,12 @@ function animate() {
   cube.rotation.y += 0.003;
   cube.rotation.z += 0.003;
 
-  camera.position.set(25,15,-30);
+  camera.position.set(25, 10, -20);
+  camera.rotation.set(179.6, 0.9, 90.7);
 
-  controls.update();
+  //controls.update();
 
-  renderer.render(scene, camera)
+  renderer.render(scene, camera);
 }
 
-animate()
+animate();
