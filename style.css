@@ -1,5 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Shippori+Antique+B1&display=swap");
+
+html {
+  background: #000000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 canvas {
   position: fixed;
   top: 0;
   left: 0;
+  opacity: 0;
+  animation-name: fadein;
+  animation-direction: normal;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  z-index: -1;
+}
+
+/*
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+*/
+
+/*
+#labels {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: white;
+}
+*/
+#title {
+  position: absolute;
+  left: 25%;
+  top: 35%;
+  opacity: 0;
+  color: white;
+  animation: fadeInUp;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
 }

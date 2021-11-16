@@ -1,5 +1,8 @@
 import "./style.css";
 import * as THREE from "three";
+import { throttle } from "lodash-es";
+// create adjustment for window resize
+// finish animations and other things
 //import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 
 const scene = new THREE.Scene();
@@ -94,13 +97,28 @@ light.shadow.camera.far = 500;
 //const gridHelper = new THREE.GridHelper(200, 50)
 //scene.add(lightHelper)
 
+window.addEventListener(
+  "resize",
+  throttle(
+    () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+      //setCanvasDimensions(renderer.domElement, width, height);
+    },
+    { trailing: true }
+  )
+);
+
 function animate() {
   requestAnimationFrame(animate);
   cube.rotation.x += 0.003;
   cube.rotation.y += 0.003;
   cube.rotation.z += 0.003;
 
-  camera.position.set(25, 10, -20);
+  camera.position.set(27, 7, -5);
   camera.rotation.set(179.6, 0.9, 90.7);
 
   //controls.update();
