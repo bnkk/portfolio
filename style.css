@@ -42,7 +42,7 @@ canvas {
   top: 0;
   color: white;
 }
-*/
+
 .title {
   position: absolute;
   left: 25%;
@@ -58,7 +58,7 @@ canvas {
 }
 
 .subtitle {
-  position: absolute;
+  position: relative;
   left: 23%;
   top: 53%;
   color: white;
@@ -66,3 +66,51 @@ canvas {
   font-family: "Poppins" sans-serif;
   font-weight: 100;
 }
+
+
+.parent {
+  display: inline-block;
+  color: white;
+  position: relative;
+  text-align: center;
+  left: 33%;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+  transform: translateX(-50%);
+}
+
+.title {
+  font-weight: 300;
+}
+
+.subtitle {
+  font-weight: 200;
+}
+
+*/
+
+.flex-center {
+  color: #ffffff;
+  position: absolute;
+  left: 33%;
+  top: 50%;
+  text-align: center;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.flex-center h1 {
+  font-weight: 300;
+}
+
+.flex-center h3 {
+  font-weight: 200;
+}
+
+/*
+.flex-center span {
+  margin: 0;
+  padding: 15px;
+}
+*/
