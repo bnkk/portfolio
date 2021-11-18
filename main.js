@@ -1,10 +1,11 @@
+// add imports
 import "./style.css";
 import * as THREE from "three";
 import { throttle } from "lodash-es";
 // create adjustment for window resize
-// finish animations and other things
 //import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 
+// create scene, camera and renderer
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -16,9 +17,12 @@ const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
   antialias: true
 });
+
+// enable shadow map and set type
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
+// set screen size
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(30);
@@ -41,8 +45,11 @@ ambientLight.shadow.mapSize.height = 512;
 ambientLight.shadow.camera.near = 0.5;
 ambientLight.shadow.camera.far = 500;
 */
+
+// set background to dark blue
 scene.background = new THREE.Color(0x030e2f);
 
+// create cube and enable shadows
 const boxGeometry = new THREE.BoxGeometry(10, 10, 10, 10);
 const boxMaterial = new THREE.MeshStandardMaterial({
   color: 0x0a39bc
@@ -53,6 +60,7 @@ cube.receiveShadow = false;
 cube.cursor = "pointer";
 scene.add(cube);
 
+// create floor and receives shadows
 const planeGeometry = new THREE.PlaneGeometry(300, 300);
 const planeMaterial = new THREE.MeshStandardMaterial({
   color: 0x0a39bc,
@@ -81,15 +89,18 @@ Array(200).fill().forEach(addStar)
 */
 //const controls = new OrbitControls(camera,renderer.domElement);
 
+// create dim ambient light
 const ambientLight = new THREE.AmbientLight(0x404040);
 scene.add(ambientLight);
 
+// create spotlight and point at the cube
 const light = new THREE.SpotLight(0xffffff, 1, 100, 90);
 light.position.set(30, 20, 0);
 light.target = cube;
 light.castShadow = true;
 scene.add(light);
 
+// set high shadow map size for the spotlight
 light.shadow.mapSize.width = 2048;
 light.shadow.mapSize.height = 2048;
 light.shadow.camera.near = 0.5;
@@ -99,6 +110,7 @@ light.shadow.camera.far = 500;
 //const gridHelper = new THREE.GridHelper(200, 50)
 //scene.add(lightHelper)
 
+// when window is resized, change renderer size and camera fov
 window.addEventListener(
   "resize",
   throttle(
@@ -113,7 +125,7 @@ window.addEventListener(
     { trailing: true }
   )
 );
-
+/*
 document.addEventListener("mousedown", onDocumentMouseDown, false);
 var projector = new THREE.Projector();
 function onDocumentMouseDown(event) {
@@ -133,7 +145,55 @@ function onDocumentMouseDown(event) {
   if (intersects.length > 0) {
   }
 }
+*/
 
+var targetList = [cube];
+
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+
+document.addEventListener('mousedown', documentOnMouseDown);
+// document.addEventListener('mousemove', documentOnMouseMove);
+
+// when cube is clicked, execute function 'clicker'
+function documentOnMouseDown(event) {
+  console.log('click heard')
+  mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+  mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  console.log('raycaster set')
+  var intersects = raycaster.intersectObjects(targetList);
+
+  if (intersects.length > 0) {
+    console.log('clicker called')
+    clicker(intersects[0].object);
+  }
+}
+
+// when mouse is over cube, change cursor to pointer **BROKEN**
+/*
+function documentOnMouseMove(event) {
+  mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+  mouse.y = (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  var intersects = raycaster.intersectObjects(targetList);
+  console.log(intersects)
+
+  if (intersects.length > 0) {
+    document.body.style.cursor = 'pointer';
+  } else {
+    document.body.style.cursor = 'default';
+  }
+}
+*/
+
+function clicker(obj) {
+  console.log(obj)
+}
+
+// run animations infinitely
 function animate() {
   requestAnimationFrame(animate);
   cube.rotation.x += 0.003;
