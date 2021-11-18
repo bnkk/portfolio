@@ -1,16 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 html {
-  background: #000000;
+  background: #030e2f;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
 }
 
-@keyframes fadein {
+@keyframes stretchy {
   from {
+    letter-spacing: 10px;
     opacity: 0;
   }
   to {
+    letter-spacing: 3px;
     opacity: 1;
   }
 }
@@ -20,7 +22,7 @@ canvas {
   top: 0;
   left: 0;
   opacity: 0;
-  animation-name: fadein;
+  animation-name: fadeIn;
   animation-direction: normal;
   animation-duration: 2s;
   animation-fill-mode: forwards;
@@ -102,10 +104,22 @@ canvas {
 
 .flex-center h1 {
   font-weight: 300;
+  opacity: 0;
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
 }
 
 .flex-center h3 {
-  font-weight: 200;
+  font-weight: 100;
+  color: #bbb;
+  opacity: 0;
+  letter-spacing: 3px;
+  animation-name: stretchy;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
 }
 
 /*

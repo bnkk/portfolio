@@ -13,7 +13,8 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector("#bg")
+  canvas: document.querySelector("#bg"),
+  antialias: true
 });
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -49,6 +50,7 @@ const boxMaterial = new THREE.MeshStandardMaterial({
 const cube = new THREE.Mesh(boxGeometry, boxMaterial);
 cube.castShadow = true;
 cube.receiveShadow = false;
+cube.cursor = "pointer";
 scene.add(cube);
 
 const planeGeometry = new THREE.PlaneGeometry(300, 300);
@@ -88,8 +90,8 @@ light.target = cube;
 light.castShadow = true;
 scene.add(light);
 
-light.shadow.mapSize.width = 512;
-light.shadow.mapSize.height = 512;
+light.shadow.mapSize.width = 2048;
+light.shadow.mapSize.height = 2048;
 light.shadow.camera.near = 0.5;
 light.shadow.camera.far = 500;
 
@@ -111,6 +113,26 @@ window.addEventListener(
     { trailing: true }
   )
 );
+
+document.addEventListener("mousedown", onDocumentMouseDown, false);
+var projector = new THREE.Projector();
+function onDocumentMouseDown(event) {
+  event.preventDefault();
+  var vector = new THREE.Vector3(
+    (event.clientX / window.innerWidth) * 2 - 1,
+    -(event.clientY / window.innerHeight) * 2 + 1,
+    0.5
+  );
+  projector.unprojectVector(vector, camera);
+  var ray = new THREE.Ray(
+    camera.position,
+    vector.subSelf(camera.position).normalize()
+  );
+  var intersects = ray.intersectsObjects(cube);
+
+  if (intersects.length > 0) {
+  }
+}
 
 function animate() {
   requestAnimationFrame(animate);
