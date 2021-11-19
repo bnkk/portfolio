@@ -17,11 +17,16 @@ html {
   }
 }
 
+.anim-out-title {
+  animation: fadeOutLeft 1s forwards 0.5s;
+}
+
 canvas {
   position: fixed;
   top: 0;
   left: 0;
   opacity: 0;
+  /*animation: fadeIn 2s forwards 0s 1 normal;*/
   animation-name: fadeIn;
   animation-direction: normal;
   animation-duration: 2s;
@@ -120,6 +125,12 @@ canvas {
   animation-duration: 1s;
   animation-delay: 2s;
   animation-fill-mode: forwards;
+  /*
+  animation-name: stretchy;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  */
 }
 
 /*
@@ -128,3 +139,27 @@ canvas {
   padding: 15px;
 }
 */
+
+.footer {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
+  color: #bbb;
+  font-size: 12px;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-timing-function: forwards;
+  animation-delay: 10s;
+  animation-fill-mode: forwards;
+}
+
+.page {
+  background-image: url(assets/background2.svg);
+  opacity: 0;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

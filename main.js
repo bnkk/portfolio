@@ -149,48 +149,65 @@ function onDocumentMouseDown(event) {
 
 var targetList = [cube];
 
+/*
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
-
-document.addEventListener('mousedown', documentOnMouseDown);
-// document.addEventListener('mousemove', documentOnMouseMove);
+*/
+/*
+const interval = setInterval(function () {
+  document.getElementById("footer-text").style.animation = "bounce 1s forwards";
+}, 5000); */
+document.addEventListener("mousedown", documentOnMouseDown);
+document.addEventListener("mousemove", documentOnMouseMove);
 
 // when cube is clicked, execute function 'clicker'
 function documentOnMouseDown(event) {
-  console.log('click heard')
+  console.log("click heard");
+  var raycaster = new THREE.Raycaster();
+  var mouse = new THREE.Vector2();
   mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
-  mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+  mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
   raycaster.setFromCamera(mouse, camera);
-  console.log('raycaster set')
+  console.log("raycaster set");
   var intersects = raycaster.intersectObjects(targetList);
 
   if (intersects.length > 0) {
-    console.log('clicker called')
+    console.log("clicker called");
     clicker(intersects[0].object);
   }
 }
 
 // when mouse is over cube, change cursor to pointer **BROKEN**
-/*
 function documentOnMouseMove(event) {
+  var raycaster = new THREE.Raycaster();
+  var mouse = new THREE.Vector2();
   mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
   mouse.y = (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
   raycaster.setFromCamera(mouse, camera);
   var intersects = raycaster.intersectObjects(targetList);
-  console.log(intersects)
 
   if (intersects.length > 0) {
-    document.body.style.cursor = 'pointer';
+    document.body.style.cursor = "pointer";
   } else {
-    document.body.style.cursor = 'default';
+    document.body.style.cursor = "default";
   }
 }
-*/
 
 function clicker(obj) {
-  console.log(obj)
+  document.getElementById("title").style.animation = "fadeOutLeft 1s forwards";
+  document.getElementById("subtitle").style.animation =
+    "fadeOutLeft 1s forwards 0.3s";
+  document.getElementById("subtitle").style.animationFillMode = "backwards";
+  document.getElementById("bg").style.animation =
+    "fadeOut 1s forwards 1s 1 normal";
+  document.getElementById("bg").style.animationFillMode = "backwards";
+  document.getElementById("footer").style.animation = "fadeOut 1s forwards";
+  document.getElementById("footer").style.animationFillMode = "backwards";
+
+  document.getElementById("secondPage").style.animation =
+    "fadeIn 1s forwards 3s";
 }
 
 // run animations infinitely
@@ -205,6 +222,8 @@ function animate() {
 
   //controls.update();
 
+  document.getElementById("footer-text").style.animation =
+    "bounce 1s forwards 15s";
   renderer.render(scene, camera);
 }
 
