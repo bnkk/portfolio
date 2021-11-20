@@ -156,10 +156,15 @@ canvas {
 }
 
 .page {
-  background-image: url(assets/background2.svg);
   opacity: 0;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+}
+
+.page section {
+  color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  min-height: 100px;
+  padding: 100px 20vw;
 }

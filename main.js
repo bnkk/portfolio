@@ -147,16 +147,21 @@ function onDocumentMouseDown(event) {
 }
 */
 
-var targetList = [cube];
+let targetList = [cube];
 
 /*
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 */
-/*
+
 const interval = setInterval(function () {
-  document.getElementById("footer-text").style.animation = "bounce 1s forwards";
-}, 5000); */
+  let text = document.getElementById('footer-text');
+  text.outerHTML = '<p id="footer-text" style="animation: bounce 1s forwards;">Click the cube to continue!</p>';
+  setTimeout(() => {
+    document.getElementById("footer-text").removeAttribute('style')
+  }, 1000)
+}, 5000); 
+
 document.addEventListener("mousedown", documentOnMouseDown);
 document.addEventListener("mousemove", documentOnMouseMove);
 
@@ -196,6 +201,8 @@ function documentOnMouseMove(event) {
 }
 
 function clicker(obj) {
+  targetList = [];
+  clearInterval(interval);
   document.getElementById("title").style.animation = "fadeOutLeft 1s forwards";
   document.getElementById("subtitle").style.animation =
     "fadeOutLeft 1s forwards 0.3s";
@@ -208,6 +215,43 @@ function clicker(obj) {
 
   document.getElementById("secondPage").style.animation =
     "fadeIn 1s forwards 3s";
+/*
+  setTimeout(() => {
+    renderer.domElement.addEventListener('dblclick', null, false);
+    scene = null;
+    camera = null;
+    empty(this.modelContainer);
+  }, 500); */
+
+
+  /*let div = document.querySelector('#secondPage');
+  const newSection = document.createElement("section");
+  const newHeader = document.createElement("h1");
+  const newContent = document.createTextNode("test");
+
+  newHeader.appendChild(newContent);
+  newSection.appendChild(newHeader);
+
+  div.appendChild(newSection);
+  */
+
+  changePage();
+}
+
+function empty(elem) {
+  while (elem.lastChild) elem.removeChild(elem.lastChild);
+}
+
+function changePage() {
+  let div = document.querySelector('#secondPage');
+  const Section = document.createElement("section");
+  const Header = document.createElement("h1");
+  const HeaderText = document.createTextNode('About Me');
+
+  Header.appendChild(HeaderText);
+  Section.appendChild(Header);
+
+  div.appendChild(Section);
 }
 
 // run animations infinitely
@@ -216,14 +260,14 @@ function animate() {
   cube.rotation.x += 0.003;
   cube.rotation.y += 0.003;
   cube.rotation.z += 0.003;
-
+  
   camera.position.set(27, 7, -5);
   camera.rotation.set(179.6, 0.9, 90.7);
 
   //controls.update();
 
-  document.getElementById("footer-text").style.animation =
-    "bounce 1s forwards 15s";
+  //document.getElementById("footer-text").style.animation =
+  //  "bounce 1s forwards 15s";
   renderer.render(scene, camera);
 }
 
