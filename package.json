@@ -7,7 +7,11 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.6.4"
+    "vite": "^2.6.4",
+    "animate.css": "4.1.1",
+    "jquery": "^3.6.0",
+    "lodash-es": "4.17.21",
+    "three": "^0.134.0"
   },
   "dependencies": {
     "animate.css": "4.1.1",
