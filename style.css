@@ -168,3 +168,24 @@ canvas {
   min-height: 100px;
   padding: 100px 20vw;
 }
+
+.newdiv {
+  display: inline-flex;
+  overflow: auto;
+}
+
+.img-me {
+  opacity: 0;
+  width: 45%;
+  height: 45%;
+  padding-left: 24px;
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+  animation-timing-function: forwards;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+}
+
+.text-me {
+  text-align: left;
+}
