@@ -88,12 +88,13 @@ window.addEventListener(
 let targetList = [cube];
 
 const interval = setInterval(function () {
-  let text = document.getElementById('footer-text');
-  text.outerHTML = '<p id="footer-text" style="animation: bounce 1s forwards;">Click the cube to continue!</p>';
+  let text = document.getElementById("footer-text");
+  text.outerHTML =
+    '<p id="footer-text" style="animation: bounce 1s forwards;">Click the cube to continue!</p>';
   setTimeout(() => {
-    document.getElementById("footer-text").removeAttribute('style')
-  }, 1000)
-}, 5000); 
+    document.getElementById("footer-text").removeAttribute("style");
+  }, 1000);
+}, 5000);
 
 document.addEventListener("mousedown", documentOnMouseDown);
 document.addEventListener("mousemove", documentOnMouseMove);
@@ -152,19 +153,31 @@ function clicker(obj) {
   changePage();
 }
 
-function empty(elem) {
-  while (elem.lastChild) elem.removeChild(elem.lastChild);
-}
-
 function changePage() {
-  let div = document.querySelector('#secondPage');
+  let div = document.querySelector("#secondPage");
+  let newDiv = document.createElement("div");
   const Section = document.createElement("section");
   const Header = document.createElement("h1");
-  const HeaderText = document.createTextNode('About Me');
+  const HeaderText = document.createTextNode("About Me");
 
   Header.appendChild(HeaderText);
   Section.appendChild(Header);
 
+  const Image = document.createElement("img");
+  Image.src = "./assets/me.jpg";
+  Image.classList.add("img-me");
+
+  const Para = document.createElement("p");
+  const ParaText = document.createTextNode(
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta molestias voluptatibus commodi ipsam, consectetur nemo temporibus magnam enim voluptatum, accusamus perferendis, quaerat laboriosam. Libero eos ab dignissimos dolorum? Animi tempore error provident, distinctio blanditiis repellat, fugit placeat, minima architecto consectetur laudantium. Est molestias eaque quas maiores corporis, ducimus, mollitia provident voluptatibus libero illum, earum delectus. Rem laborum vel in, dolore eos ut voluptates et harum impedit quis molestias, tempore consectetur facere dicta quod natus unde officiis itaque odit qui officia nobis error numquam! Deleniti impedit quae nulla amet fugiat explicabo nihil voluptatum enim sunt doloremque magnam ad, labore aperiam ullam!"
+  );
+  Para.appendChild(ParaText);
+  Para.classList.add("text-me");
+  newDiv.append(Para);
+  newDiv.appendChild(Image);
+
+  newDiv.classList.add("newdiv");
+  Section.appendChild(newDiv);
   div.appendChild(Section);
 }
 
@@ -174,7 +187,7 @@ function animate() {
   cube.rotation.x += 0.003;
   cube.rotation.y += 0.003;
   cube.rotation.z += 0.003;
-  
+
   camera.position.set(27, 7, -5);
   camera.rotation.set(179.6, 0.9, 90.7);
 
