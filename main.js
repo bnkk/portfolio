@@ -184,9 +184,9 @@ function changePage() {
 // run animations infinitely
 function animate() {
   requestAnimationFrame(animate);
-  cube.rotation.x += 0.003;
-  cube.rotation.y += 0.003;
-  cube.rotation.z += 0.003;
+  cube.rotation.x += 1;
+  cube.rotation.y += 1;
+  cube.rotation.z += 1;
 
   camera.position.set(27, 7, -5);
   camera.rotation.set(179.6, 0.9, 90.7);
