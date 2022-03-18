@@ -7,7 +7,7 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.6.4"
+    "vite": "^2.8.6"
   },
   "dependencies": {
     "animate.css": "4.1.1",

@@ -144,8 +144,8 @@ function clicker(obj) {
   document.getElementById("bg").style.animation =
     "fadeOut 1s forwards 1s 1 normal";
   document.getElementById("bg").style.animationFillMode = "backwards";
-  document.getElementById("footer").style.animation = "fadeOut 1s forwards";
-  document.getElementById("footer").style.animationFillMode = "backwards";
+  document.getElementById("footer-text").style.animation = "fadeOut 1s forwards";
+  document.getElementById("footer-text").style.animationFillMode = "both";
 
   document.getElementById("secondPage").style.animation =
     "fadeIn 1s forwards 3s";
@@ -155,6 +155,7 @@ function clicker(obj) {
 
 function changePage() {
   let div = document.querySelector("#secondPage");
+  let footer = document.querySelector("#footer")
   let newDiv = document.createElement("div");
   const Section = document.createElement("section");
   const Header = document.createElement("h1");
@@ -171,6 +172,9 @@ function changePage() {
   const ParaText = document.createTextNode(
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta molestias voluptatibus commodi ipsam, consectetur nemo temporibus magnam enim voluptatum, accusamus perferendis, quaerat laboriosam. Libero eos ab dignissimos dolorum? Animi tempore error provident, distinctio blanditiis repellat, fugit placeat, minima architecto consectetur laudantium. Est molestias eaque quas maiores corporis, ducimus, mollitia provident voluptatibus libero illum, earum delectus. Rem laborum vel in, dolore eos ut voluptates et harum impedit quis molestias, tempore consectetur facere dicta quod natus unde officiis itaque odit qui officia nobis error numquam! Deleniti impedit quae nulla amet fugiat explicabo nihil voluptatum enim sunt doloremque magnam ad, labore aperiam ullam!"
   );
+
+  document.getElementById('footer-text').innerText = 'Press escape to go back'
+
   Para.appendChild(ParaText);
   Para.classList.add("text-me");
   newDiv.append(Para);
@@ -178,7 +182,26 @@ function changePage() {
 
   newDiv.classList.add("newdiv");
   Section.appendChild(newDiv);
+
   div.appendChild(Section);
+
+  document.getElementById("footer-text").style.animation = "fadeIn 1s forwards";
+  document.getElementById("footer-text").style.animationFillMode = "backwards";
+  document.getElementById("footer-text").style.animationDelay = "2s";
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      fadeOutRefresh();
+    }
+  });
+}
+
+function fadeOutRefresh() {
+  document.getElementById("body").style.animation = "fadeOut 1s forwards";
+
+  setTimeout(function () {
+    window.location.reload();
+  }, 1000)
 }
 
 // run animations infinitely
